@@ -1,0 +1,23 @@
+<h1><%= @event.name %> (<%= @event.date %>)</h1>
+<h2><%= @event.location %></h2>
+<h2><%= @event.description %></h2>
+
+<% if user_signed_in? %>
+  <% if Enrollment.exists?(event: @event, user: current_user) %>
+    <%= button_to "Destroy enrollment", event_enrollments_path(@event), method: :delete %>
+  <% else %>
+    <%= button_to "Create enrollment", event_enrollments_path(@event) %>
+  <% end %>
+
+  <% if @event.creator == current_user %>
+    <%= link_to "Edit Event", edit_event_path(@event) %>
+    <%= button_to "Destroy Event", event_path(@event), method: :delete %>
+  <% end %>
+<% end %>
+
+<h1>List of attendees:</h1>
+<ul>
+  <% @event.attendees.each do |attendee| %>
+    <li><%= link_to attendee.email, attendee %></li>
+  <% end %>
+</ul>

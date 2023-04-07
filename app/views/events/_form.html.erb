@@ -1,0 +1,15 @@
+<%= form_with model: event do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name, autofocus: true %><br><br>
+
+  <%= form.label :date %>
+  <%= form.datetime_field :date %><br><br>
+
+  <%= form.label :location %>
+  <%= form.text_field :location %><br><br>
+
+  <%= form.label :description %>
+  <%= form.text_area :description %><br><br>
+
+  <%= form.submit %>
+<% end %>
